@@ -2,11 +2,22 @@ import time
 import json
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 
 url = 'http://a.suda.edu.cn'
-chrome = webdriver.Chrome(executable_path='chromedriver.exe')
+
+chrome_options = Options()
+# 设置chrome浏览器无界面模式
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+
+chrome = webdriver.Chrome(
+    executable_path='chromedriver.exe'
+    , chrome_options=chrome_options)
 chrome.get(url)
+
 
 def logout():
     logout = chrome.find_element_by_name('logout')
@@ -22,7 +33,8 @@ def check():
     message_xpath = '//*[@id="message"]'
     succecc_msg = '您已经成功登录。'
     try:
-        successed = (succecc_msg == chrome.find_element_by_xpath(success_info_xpath).text.strip())
+        successed = (succecc_msg == chrome.find_element_by_xpath(
+            success_info_xpath).text.strip())
     except NoSuchElementException as e:
         pass
     try:
@@ -51,22 +63,23 @@ def login(u='', p=''):
     account_input.clear()
     password_input.clear()
     account_input.send_keys(u)
-    time.sleep(0.5)
     password_input.send_keys(p)
-    time.sleep(0.5)
-    login_bt.submit()
+    # 执行脚本生成隐藏的随机验证码，并登录
+    chrome.execute_script('arguments[0].click()', login_bt)
+    # ActionChains(driver=chrome).move_to_element(login_bt).click(login_bt)
+    # login_bt.click()
 
 
 if __name__ == '__main__':
     file_path = 'account.json'
-    with open(file_path, 'r','utf8') as f:
+    with open(file_path, 'r', encoding='utf8') as f:
         obj = json.load(f)
     account = obj['account']
     password = obj['password']
 
     delay = 10
     print('后台运行维持网络连接。')
-    msg=''
+    msg = ''
     while True:
         # time.sleep(delay)
         try:
@@ -76,7 +89,7 @@ if __name__ == '__main__':
                 login(account, password)
             msg = m[:min(7, len(m))]
         except Exception as e:
-            # print(e)
+            print(e)
             pass
         t = delay
         for i in range(t, 0, -1):
