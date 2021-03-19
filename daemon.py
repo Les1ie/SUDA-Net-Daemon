@@ -1,8 +1,7 @@
 import time
+import json
 
 from selenium import webdriver
-import webbrowser as web
-
 from selenium.common.exceptions import NoSuchElementException
 
 url = 'http://a.suda.edu.cn'
@@ -38,7 +37,7 @@ def check():
     return successed, message
 
 
-def login(u='20204227059', p='Wu498721344!'):
+def login(u='', p=''):
     # 选择'普通登录'
     # chrome.find_element_by_xpath('//*[@id="edit_body"]/div[1]/div[3]/div/div[1]/span[1]').click()
 
@@ -59,6 +58,11 @@ def login(u='20204227059', p='Wu498721344!'):
 
 
 if __name__ == '__main__':
+    file_path = 'account.json'
+    with open(file_path, 'r','utf8') as f:
+        obj = json.load(f)
+    account = obj['account']
+    password = obj['password']
 
     delay = 10
     print('后台运行维持网络连接。')
@@ -69,7 +73,7 @@ if __name__ == '__main__':
             print(f'\r检查网络连接中。', end='')
             s, m = check()
             if not s:
-                login()
+                login(account, password)
             msg = m[:min(7, len(m))]
         except Exception as e:
             # print(e)
