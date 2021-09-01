@@ -1,14 +1,18 @@
 # SUDA-Net-Daemon
+
 Daemon of Soochow University school network connection.
 
+Download chrome web driver from https://chromedriver.chromium.org/downloads.
+
 ## Installation
+
 Based on Google Chrome browser.
 ```sh
 pip install -r requirements.txt
 ```
 
 ## Run
-1. Edit your account infomation in `account.json`.
+1. Edit your account information in `account.json`.
 2. Run script:
 
     ```sh
