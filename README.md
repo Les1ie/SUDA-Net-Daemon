@@ -5,6 +5,7 @@ Daemon of Soochow University school network connection.
 Download chrome web driver from https://chromedriver.chromium.org/downloads.
 
 ## Installation
+Based on Google Chrome browser, check your chrome broswer version, then download the chrome driver from [here](https://chromedriver.chromium.org/downloads) and replace the `chromedriver.exe`.
 
 Based on Google Chrome browser.
 ```sh
