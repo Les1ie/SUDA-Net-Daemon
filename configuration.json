@@ -1,0 +1,10 @@
+{
+  "login": {
+    "account": "",
+    "password": ""
+  },
+  "daemon": {
+    "host": "http://10.9.1.3/",
+    "frequencies": 10
+  }
+}
