@@ -15,12 +15,26 @@ pip install -r requirements.txt
 ```
 
 ## 运行
-1. 在 `configuration.json` 中编辑校园网登录IP、账号密码等配置信息；
+1. 在 `configuration.json` 中编辑校园网登录IP、账号密码等配置信息，默认配置格式如下：
+
+    ```json
+    {
+        "login":{
+            "account":"",
+            "password":""
+        },
+        "daemon":{
+                "host": "http://10.9.1.3/",
+                "frequencies": 10
+        }
+    }
+    ```
+
 2. 运行如下命令:
 
-```sh
-python daemon.py
-```
+    ```sh
+    python daemon.py
+    ```
 
 ## Todo
 1. 开机启动

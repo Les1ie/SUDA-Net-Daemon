@@ -18,11 +18,25 @@ pip install -r requirements.txt
 
 ## Run
 1. Edit the host for login and your account information in `configuration.json`.
+
+    ```json
+    {
+        "login":{
+            "account":"",
+            "password":""
+        },
+        "daemon":{
+                "host": "http://10.9.1.3/",
+                "frequencies": 10
+        }
+    }
+    ```
 2. Run script:
 
-```sh
-python daemon.py
-```
+    ```sh
+    python daemon.py
+    ```
+
 ## Todo
 1. Startup with system
 2. Visualization: GUI interface + tray
