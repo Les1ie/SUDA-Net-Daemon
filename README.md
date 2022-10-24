@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ```
 
 ## 运行
-1. 在 `configuration.json` 中编辑校园网登录IP、账号密码等配置信息，默认配置格式如下：
+1. 在 `configurations.json` 中编辑校园网登录IP、账号密码等配置信息，默认配置格式如下：
 
     ```json
     {

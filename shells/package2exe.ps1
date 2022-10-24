@@ -1,1 +1,0 @@
-pyinstaller -F .\daemon.py -n SUDA-Net-Daemon -i resources/suda-logo.png

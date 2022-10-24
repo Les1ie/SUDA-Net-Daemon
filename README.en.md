@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 
 ## Run
-1. Edit the host for login and your account information in `configuration.json`.
+1. Edit the host for login and your account information in `configurations.json`.
 
     ```json
     {

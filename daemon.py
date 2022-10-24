@@ -97,7 +97,7 @@ def init_chrome(host):
 
 
 if __name__ == '__main__':
-    user_cfg_path = 'configuration.json'
+    user_cfg_path = 'configurations.json'
     user_config = None
     try:
         with open(user_cfg_path, 'r', encoding='utf8') as f:
@@ -131,7 +131,7 @@ if __name__ == '__main__':
             logger.error(f'登录或状态检查出错。', exc_info=True)
         t = delay
         for i in range(t, 0, -1):
-            print(f'\r当前状态：{msg} [{dt}]，下一次检查：{i}s。', end='')
+            print(f'\r当前状态：{msg} [{dt}]，下一次检查：{i}s', end='')
             time.sleep(1)
     chrome.close()
 
