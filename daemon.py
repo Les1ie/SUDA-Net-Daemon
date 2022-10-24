@@ -6,7 +6,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import SessionNotCreatedException, NoSuchElementException
 
 logger = logging.getLogger('SUDA-Net-Daemon')
 logger.setLevel('ERROR')
@@ -33,16 +33,21 @@ def check(chrome, host):
         successed = (succecc_msg == chrome.find_element_by_xpath(
             success_info_xpath).text.strip())
     except NoSuchElementException as e:
-        logger.error('未找到检测目标', exc_info=True)
-    try:
-        if successed:
-            message = succecc_msg
-        else:
+        # logger.error('未找到检测目标', exc_info=True)
+        pass
+
+    if successed:
+        message = succecc_msg
+    else:
+        try:
             msg = chrome.find_element_by_xpath(message_xpath).text
             message = msg
-    except Exception as e:
-        message = '登录失败'
-        logger.error(message, exc_info=True)
+        except NoSuchElementException as e:
+            # 未登录
+            message = '未登录，尝试登录。'
+        except Exception as e:
+            message = '页面状态解析失败。'
+            logger.error(message, exc_info=True)
     # print(message)
     return successed, message
 
@@ -76,7 +81,7 @@ def init_chrome(host):
     chrome_options.add_argument('--incognito')  # 无痕隐身模式
     chrome_options.add_argument("disable-cache")    # 禁用缓存
     chrome_options.add_argument('log-level=3')  # 过滤浏览器驱动的命令行输出
-    from selenium.common.exceptions import SessionNotCreatedException
+
     try:
         chrome = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
         chrome.get(host)
