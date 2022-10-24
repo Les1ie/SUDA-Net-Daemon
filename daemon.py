@@ -105,6 +105,7 @@ if __name__ == '__main__':
     except FileNotFoundError as e:
         # print('配置文件 configuration.json 不存在。')
         logger.error('配置文件 configuration.json 不存在。')
+        exit()
 
     host = user_config['daemon']['host']
     chrome = init_chrome(host)
