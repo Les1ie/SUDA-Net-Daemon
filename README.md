@@ -4,7 +4,14 @@
 
 苏州大学校园网守护进程，妈妈再也不用担心实验室电脑断网了。（请确保校园网账户余额充足）
 
-## 安装
+## 使用
+
+### 发行版
+
+[下载发行版](https://github.com/Les1ie/SUDA-Net-Daemon/releases)，并按照说明运行。
+
+### 从源码运行
+#### 安装
 
 基于 Python 开发，要求使用 Chrome 浏览器驱动（[下载地址](https://chromedriver.chromium.org/downloads)），**下载和本地 Chorme 浏览器对应版本的驱动**后替换 `chromedriver.exe`。
 
@@ -14,7 +21,7 @@
 pip install -r requirements.txt
 ```
 
-## 运行
+#### 运行
 1. 在 `configurations.json` 中编辑校园网登录IP、账号密码等配置信息，默认配置格式如下：
 
     ```json
