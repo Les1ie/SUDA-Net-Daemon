@@ -131,4 +131,4 @@ dmypy.json
 # pycharm project settings
 .idea/
 
-account.json
+configuration.json
