@@ -103,8 +103,8 @@ if __name__ == '__main__':
         with open(user_cfg_path, 'r', encoding='utf8') as f:
             user_config = json.load(f)
     except FileNotFoundError as e:
-        # print('配置文件 configuration.json 不存在。')
-        logger.error('配置文件 configuration.json 不存在。')
+        # print('配置文件 configurations.json 不存在。')
+        logger.error('配置文件 configurations.json 不存在。')
         exit()
 
     host = user_config['daemon']['host']
